@@ -8,7 +8,7 @@ const Select = styled.select`
   border-radius: ${(props) => props.radius};
   outline: none;
   cursor: pointer;
-  width: ${(props) => props.width};
+  min-width: ${(props) => props.width};
   color: ${(props) => props.theme.colors.black};
 `;
 
