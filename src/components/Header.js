@@ -20,6 +20,7 @@ export default function Header() {
             <Icon
               className='fa-solid fa-rotate-left'
               color={theme.colors.blue}
+              size='.9rem'
             ></Icon>
             <Text color={theme.colors.blue} size='.9rem' weight='bold'>
               Reset

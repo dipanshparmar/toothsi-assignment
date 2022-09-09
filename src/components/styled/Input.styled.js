@@ -11,6 +11,7 @@ const Input = styled.input`
   background-color: ${props => props.bg};
   box-shadow: ${props => props.shadow};
   font-weight: ${props => props.weight};
+  font-family: ${props => props.theme.fontFamily};
 `
 
 export default Input
