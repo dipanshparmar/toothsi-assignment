@@ -7,6 +7,7 @@ const theme = {
     accent: '#F2F2F2',
     shadow: '#E8E8E8',
     green: '#428653',
+    purple: '#1E54AF',
   },
   fontFamily: 'sans-serif',
 };
