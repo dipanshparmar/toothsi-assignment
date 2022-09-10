@@ -10,6 +10,10 @@ const GlobalStyles = createGlobalStyle`
   body {
     font-family: ${props => props.theme.fontFamily};
   }
+
+  a {
+    text-decoration: none;
+  }
 `
 
 export default GlobalStyles
