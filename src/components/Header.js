@@ -7,6 +7,7 @@ import theme from '../theme';
 import Input from './styled/Input.styled';
 import useItemsStore from '../stores/itemsStore';
 import Select from './styled/Select.styled';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   // default values for type and size
@@ -116,11 +117,13 @@ export default function Header() {
               onChange={(e) => setSearchValue(e.target.value)}
             />
           </Row>
-          <Container padding='.7rem 1.3rem' bg={theme.colors.blue}>
-            <Text size='.9rem' weight='bold' color='white'>
-              Add To Cart
-            </Text>
-          </Container>
+          <Link to='/cart'>
+            <Container padding='.7rem 1.3rem' bg={theme.colors.blue}>
+              <Text size='.9rem' weight='bold' color='white'>
+                Add To Cart
+              </Text>
+            </Container>
+          </Link>
         </Row>
       </Row>
     </Container>
