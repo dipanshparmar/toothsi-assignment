@@ -10,16 +10,28 @@ import Row from './styled/Row.styled';
 import Icon from './styled/Icon.styled';
 import Container from './styled/Container.styled';
 import Input from './styled/Input.styled';
-import items from '../data/items';
+import useItemsStore from '../stores/itemsStore';
+import { useState } from 'react';
 
 export default function ItemsTable() {
+  const filtered = useItemsStore((state) => state.filtered);
+
   return (
-    <Table>
-      <Header />
-      <tbody>
-        <DataRows />
-      </tbody>
-    </Table>
+    <>
+      <Table>
+        <Header />
+        {filtered.length > 0 && (
+          <tbody>
+            <DataRows items={filtered} />
+          </tbody>
+        )}
+      </Table>
+      {!filtered.length && (
+        <Container width='100%' center={true} margin='5rem 0'>
+          <Text size='.9rem'>No items with these filters!</Text>
+        </Container>
+      )}
+    </>
   );
 }
 
@@ -92,7 +104,7 @@ function Header() {
 }
 
 // function to get the data rows
-function DataRows() {
+function DataRows({ items }) {
   return items.map((item) => {
     // grabbing the properties that we need
     const { id, image, color, name, price, quantity } = item;
@@ -163,6 +175,7 @@ function DataRows() {
                   weight='bold'
                   defaultValue={quantity > 0 ? '1' : '-'}
                   disabled={quantity > 0 ? false : true}
+                  max={quantity}
                 />
               </Row>
               <Container

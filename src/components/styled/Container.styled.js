@@ -15,6 +15,7 @@ const Container = styled.div`
   display: ${props => props.center && 'flex'};
   justify-content: ${props => props.center && 'center'};
   align-items: ${props => props.center && 'center'};
+  cursor: ${props => props.cursor};
 `
 
 export default Container

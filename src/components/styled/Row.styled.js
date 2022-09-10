@@ -6,6 +6,7 @@ const Row = styled.div`
   justify-content: ${(props) => props.justify};
   column-gap: ${(props) => props.gap};
   padding: ${(props) => props.padding};
+  cursor: ${props => props.cursor};
 `;
 
 export default Row;
