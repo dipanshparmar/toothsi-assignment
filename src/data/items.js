@@ -50,7 +50,7 @@ const items = [
     'Blue',
     'XXL',
     'shirt',
-    11
+    0
   ),
   new Item(
     6,
