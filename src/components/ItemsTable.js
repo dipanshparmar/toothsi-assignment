@@ -125,10 +125,16 @@ function DataRows() {
         <TableData>
           <Row gap='.5rem'>
             <Icon
-              className={`fa-solid ${quantity > 0 ? 'fa-face-smile ': 'fa-face-meh'}`}
+              className={`fa-solid ${
+                quantity > 0 ? 'fa-face-smile ' : 'fa-face-meh'
+              }`}
               color={quantity > 0 ? theme.colors.green : 'red'}
             ></Icon>
-            <Text size='.9rem' weight='bold' color={ quantity > 0 ? theme.colors.green : 'red'}>
+            <Text
+              size='.9rem'
+              weight='bold'
+              color={quantity > 0 ? theme.colors.green : 'red'}
+            >
               {quantity > 0 ? 'In Stock' : 'Out of Stock'}
             </Text>
           </Row>
@@ -141,17 +147,24 @@ function DataRows() {
         <TableData>
           <Row justify='end' gap='.5rem'>
             <Row gap='.3rem'>
-              <Input
-                size='1'
-                border='0'
-                bg={theme.colors.accent}
-                shadow={`inset .1rem .1rem ${theme.colors.shadow}`}
-                padding='0 1rem'
-                height='2rem'
-                weight='bold'
-                defaultValue={quantity > 0 ? '1': '-'}
-                disabled={quantity > 0 ? false : true}
-              />
+              <Row gap='1rem' align='start'>
+                <Container>
+                  <Text weight='bold' size='.7rem'>
+                    qty. {quantity}
+                  </Text>
+                </Container>
+                <Input
+                  size='1'
+                  border='0'
+                  bg={theme.colors.accent}
+                  shadow={`inset .1rem .1rem ${theme.colors.shadow}`}
+                  padding='0 1rem'
+                  height='2rem'
+                  weight='bold'
+                  defaultValue={quantity > 0 ? '1' : '-'}
+                  disabled={quantity > 0 ? false : true}
+                />
+              </Row>
               <Container
                 height='2rem'
                 padding='0 1.3rem'
@@ -165,7 +178,7 @@ function DataRows() {
                 ></Icon>
               </Container>
             </Row>
-            <Input type='checkbox' />
+            <Input type='checkbox' disabled={quantity > 0 ? false : true} />
           </Row>
         </TableData>
       </TableRow>
