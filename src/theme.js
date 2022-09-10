@@ -6,6 +6,7 @@ const theme = {
     grey: '#777777',
     accent: '#F2F2F2',
     shadow: '#E8E8E8',
+    green: '#428653',
   },
   fontFamily: 'sans-serif',
 };
