@@ -44,14 +44,11 @@ export default function Header() {
 // function to get all the unique categories of the items
 function getUniqueCategories() {
   // list to store the unique categories
-  const uniqueCategories = ['All'];
+  const uniqueCategories = ['all'];
 
   // for every item
   for (let item of items) {
     let { type } = item;
-
-    // getting the first char as uppercase and updating the type
-    type = type[0].toUpperCase() + type.substring(1, type.length);
 
     if (!uniqueCategories.includes(type)) {
       uniqueCategories.push(type);
@@ -64,7 +61,7 @@ function getUniqueCategories() {
 // function to get unique sizes
 function getUniqueSizes() {
   // list to store the unique sizes
-  const uniqueSizes = ['Size'];
+  const uniqueSizes = ['size'];
 
   // for every item
   for (let item of items) {
