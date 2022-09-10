@@ -12,6 +12,7 @@ import Container from './styled/Container.styled';
 import Input from './styled/Input.styled';
 import useItemsStore from '../stores/itemsStore';
 import { useState } from 'react';
+import useCartStore from '../stores/cartStore';
 
 export default function ItemsTable() {
   const filtered = useItemsStore((state) => state.filtered);
@@ -105,6 +106,10 @@ function Header() {
 
 // function to get the data rows
 function DataRows({ items }) {
+  // getting the state functions
+  const addItemToCart =  useCartStore((state) => state.addItemToCart)
+  const removeFromCart = useCartStore((state) => state.removeFromCart)
+
   return items.map((item) => {
     // grabbing the properties that we need
     const { id, image, color, name, price, quantity } = item;
@@ -191,7 +196,18 @@ function DataRows({ items }) {
                 ></Icon>
               </Container>
             </Row>
-            <Input type='checkbox' disabled={quantity > 0 ? false : true} />
+            <Input type='checkbox' disabled={quantity > 0 ? false : true} onChange={(e) => {
+              // getting the status
+              const isChecked = e.target.checked
+
+              // if checked then add the item to the cart
+              if (isChecked) {
+                addItemToCart(item)
+              } else {
+                // otherwise remove from cart
+                removeFromCart(item.id)
+              }
+            }} />
           </Row>
         </TableData>
       </TableRow>
