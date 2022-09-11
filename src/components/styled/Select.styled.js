@@ -10,6 +10,10 @@ const Select = styled.select`
   cursor: pointer;
   min-width: ${(props) => props.width};
   color: ${(props) => props.theme.colors.black};
+
+  @media screen and (max-width: 425px) {
+    font-size: ${props => props.smSize};
+  }
 `;
 
 export default Select;

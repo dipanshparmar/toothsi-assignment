@@ -6,9 +6,9 @@ import theme from '../theme';
 
 export default function Thanks() {
   return (
-    <Container height='100vh' width='100%' center={true} bg={theme.colors.border}>
+    <Container height='100vh' width='100%' center={true} bg={theme.colors.border} padding='0 2rem'>
       <Column gap='1rem'>
-        <Text weight='bold'>
+        <Text weight='bold' align='center'>
           Thanks for shopping with us. Looking forward to see you again in
           future.
         </Text>

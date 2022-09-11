@@ -8,6 +8,8 @@ const Text = styled.p`
   border-bottom: ${props => props.underline && `.15rem solid ${props.color}`};
   width: ${props => props.underline && 'fit-content'};
   line-height: ${props => props.underline && '.6rem'};
+  white-space: ${props => props.whiteSpace};
+  text-align: ${props => props.align};
 `
 
 export default Text

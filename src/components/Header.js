@@ -45,7 +45,7 @@ export default function Header() {
 
   return (
     <Container padding='1rem'>
-      <Row justify='space-between'>
+      <Row justify='space-between' mdInvert={true} align='left' mdRowGap='1rem'>
         <Row gap='1rem'>
           <Row gap='.5rem'>
             <Select
@@ -54,6 +54,7 @@ export default function Header() {
               border={`.15rem solid ${theme.colors.border}`}
               radius='.3rem'
               bg='transparent'
+              smSize='.8rem'
               onChange={(e) => {
                 setTypeFilter(e.target.value);
               }}
@@ -71,6 +72,7 @@ export default function Header() {
               border={`.15rem solid ${theme.colors.border}`}
               radius='.3rem'
               bg='transparent'
+              smSize='.8rem'
               onChange={(e) => {
                 setSizeFilter(e.target.value);
               }}
@@ -101,8 +103,8 @@ export default function Header() {
             </Text>
           </Row>
         </Row>
-        <Row gap='1.5rem'>
-          <Row gap='.5rem'>
+        <Row gap='1.5rem' mdJustify='space-between'>
+          <Row gap='.5rem' smFlex='1'>
             <Text size='.9rem' weight='bold' color={theme.colors.grey}>
               Search:
             </Text>
@@ -115,6 +117,8 @@ export default function Header() {
               weight='bold'
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
+              smWidth='100%'
+              smSize='.8rem'
             />
           </Row>
           <Link to='/cart'>

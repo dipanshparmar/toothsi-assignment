@@ -13,7 +13,12 @@ const Input = styled.input`
   font-weight: ${props => props.weight};
   font-family: ${props => props.theme.fontFamily};
   height: ${props => props.height};
-  width: ${props => props.width}
+  width: ${props => props.width};
+
+  @media screen and (max-width: 425px) {
+    width: ${props => props.smWidth};
+    font-size: ${props => props.smSize};
+  }
 `
 
 export default Input

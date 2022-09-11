@@ -26,6 +26,24 @@ const GlobalStyles = createGlobalStyle`
   input[type=number] {
     -moz-appearance: textfield;
   }
+
+  @media screen and (max-width: 1024px) {
+    html {
+      font-size: 14px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    html {
+      font-size: 12px;
+    }
+  }
+
+  @media screen and (max-width: 425px) {
+    html {
+      font-size: 10px;
+    }
+  }
 `;
 
 export default GlobalStyles;

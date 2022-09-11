@@ -27,11 +27,11 @@ export default function Cart() {
   return (
     <Container margin='1rem'>
       {cartItems.length ? (
-        <Row gap='2rem' align='start'>
-          <Container flex='4'>
+        <Row gap='2rem' align='start' mdInvert={true} mdRowGap='1rem'>
+          <Container flex='4' width='100%' overflowX='auto'>
             <Table>
               <THead borderB={`.05rem solid ${theme.colors.border}`}>
-                <TableRow dataPadding='2rem 0'>
+                <TableRow dataPadding='2rem'>
                   <TableHeading width='50%'>
                     <Text
                       size='.85rem'
@@ -82,6 +82,8 @@ export default function Cart() {
             border={`.15rem solid ${theme.colors.border}`}
             padding='1.5rem 1rem'
             radius='.2rem'
+            mdWidth='100%'
+            lgFlex='1.5'
           >
             <Column align='start' gap='1.5rem'>
               <Text color={theme.colors.purple} size='1.3rem'>
@@ -121,11 +123,11 @@ export default function Cart() {
                   <Container
                     bg={theme.colors.purple}
                     width='100%'
-                    padding='1.2rem 0'
+                    padding='1.2rem'
                     center={true}
                     radius='3rem'
                   >
-                    <Text weight='bold' size='.9rem' color='white'>
+                    <Text weight='bold' size='.85rem' color='white' align='center'>
                       PROCEED TO CHECKOUT
                     </Text>
                   </Container>
@@ -136,7 +138,7 @@ export default function Cart() {
         </Row>
       ) : (
         <Container height='100vh' width='100%' center={true}>
-          <Text>
+          <Text align='center'>
             Nothing to show here. Try adding some items here{' '}
             <Link to='/'>/</Link>
           </Text>
@@ -179,7 +181,7 @@ function CartItemRow({ cartItem }) {
             width='5rem'
             radius='.2rem'
           ></Container>
-          <Text color={theme.colors.black} size='.9rem' weight='bold'>
+          <Text color={theme.colors.black} size='.9rem' weight='bold' whiteSpace='nowrap'>
             {cartItem.item.name}
           </Text>
         </Row>
@@ -195,8 +197,9 @@ function CartItemRow({ cartItem }) {
             border={`.1rem solid ${theme.colors.border}`}
             padding='.9rem 1.5rem'
             radius='2rem'
+            smPadding='.5rem 1rem'
           >
-            <Row gap='1.5rem'>
+            <Row gap='1.5rem' smColGap='1rem'>
               <Icon
                 className='fa-solid fa-minus'
                 size='.8rem'
