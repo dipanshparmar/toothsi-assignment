@@ -118,6 +118,7 @@ function DataRow({ item }) {
   // getting the state functions
   const addItemToCart = useCartStore((state) => state.addItemToCart);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
+  const updateQuantity = useCartStore((state) => state.updateQuantity)
 
   // state for quantity
   const [userQuantity, setUserQuantity] = useState(quantity > 0 ? 1 : 0)
@@ -125,22 +126,31 @@ function DataRow({ item }) {
   // state for checkbox
   const [isChecked, setIsChecked] = useState(false)
 
-  // to update when there is a change in checkbox or user quantity
+  // to update when there is a change in checkbox
   useEffect(() => {
-    // creating a cart item
+    // creating a cart item for current item
     const cartItem = new CartItem(item, userQuantity === '' ? 1 : userQuantity)
 
     // if checked then add the item to the cart
     if (isChecked) {
-      // if only user quantity changed then we will add duplicates. Hence to avoid that first delete the cart item if already exists
-      removeFromCart(cartItem)
-
       addItemToCart(cartItem);
     } else {
       // otherwise remove from cart
       removeFromCart(cartItem);
     }
-  }, [isChecked, userQuantity])
+  }, [isChecked])
+
+  // when there is change in user quantity
+  useEffect(() => {
+    // creating the cart item
+    const cartItem = new CartItem(item, userQuantity)
+
+    // if the checkbox is checked
+    if (isChecked) {
+      // update quantity
+      updateQuantity(cartItem, userQuantity === '' ? 1: userQuantity)
+    }
+  }, [userQuantity])
 
   return (
     <TableRow dataPadding='1rem' dataAlignVertical='top' key={id}>
