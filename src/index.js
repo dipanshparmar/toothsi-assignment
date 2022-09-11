@@ -7,6 +7,7 @@ import Cart from './Pages/Cart';
 import { ThemeProvider } from 'styled-components';
 import theme from './theme';
 import GlobalStyles from './GlobalStyles.styled';
+import Thanks from './Pages/Thanks';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -18,6 +19,7 @@ root.render(
         <Routes>
           <Route path='/' element={<App />} />
           <Route path='/cart' element={<Cart />} />
+          <Route path='/thanks' element={<Thanks />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
