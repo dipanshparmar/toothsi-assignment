@@ -23,4 +23,12 @@ const TableData = styled.td`
   width: ${props => props.width};
 `
 
-export { Table, TableRow, TableHeading, TableData }
+const THead = styled.thead`
+  border-bottom: ${props => props.borderB};
+`
+
+const TBody = styled.tbody`
+  border-bottom: ${props => props.borderB};
+`
+
+export { Table, TableRow, TableHeading, TableData, THead , TBody }

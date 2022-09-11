@@ -13,6 +13,8 @@ import Input from './styled/Input.styled';
 import useItemsStore from '../stores/itemsStore';
 import { useState } from 'react';
 import useCartStore from '../stores/cartStore';
+import CartItem from '../models/CartItem';
+import { useEffect } from 'react';
 
 export default function ItemsTable() {
   const filtered = useItemsStore((state) => state.filtered);
@@ -106,111 +108,128 @@ function Header() {
 
 // function to get the data rows
 function DataRows({ items }) {
+  return items.map((item) => <DataRow item={item} key={item.id} />);
+}
+
+function DataRow({ item }) {
+  // grabbing the properties that we need
+  const { id, image, color, name, price, quantity } = item;
+
   // getting the state functions
-  const addItemToCart =  useCartStore((state) => state.addItemToCart)
-  const removeFromCart = useCartStore((state) => state.removeFromCart)
+  const addItemToCart = useCartStore((state) => state.addItemToCart);
+  const removeFromCart = useCartStore((state) => state.removeFromCart);
 
-  return items.map((item) => {
-    // grabbing the properties that we need
-    const { id, image, color, name, price, quantity } = item;
+  // state for quantity
+  const [userQuantity, setUserQuantity] = useState(quantity > 0 ? 1 : 0)
 
-    return (
-      <TableRow dataPadding='1rem' dataAlignVertical='top' key={id}>
-        <TableData width='0'>
-          <Container height='5rem' width='5rem' bgImg={image}></Container>
-        </TableData>
-        <TableData>
-          <Text
-            size='.9rem'
-            weight='bold'
-            color={theme.colors.blue}
-            underline={true}
-          >
-            {name}
+  // state for checkbox
+  const [isChecked, setIsChecked] = useState(false)
+
+  // to update when there is a change in checkbox or user quantity
+  useEffect(() => {
+    // creating a cart item
+    const cartItem = new CartItem(item, userQuantity === '' ? 1 : userQuantity)
+
+    // if checked then add the item to the cart
+    if (isChecked) {
+      // if only user quantity changed then we will add duplicates. Hence to avoid that first delete the cart item if already exists
+      removeFromCart(cartItem)
+
+      addItemToCart(cartItem);
+    } else {
+      // otherwise remove from cart
+      removeFromCart(cartItem);
+    }
+  }, [isChecked, userQuantity])
+
+  return (
+    <TableRow dataPadding='1rem' dataAlignVertical='top' key={id}>
+      <TableData width='0'>
+        <Container height='5rem' width='5rem' bgImg={image}></Container>
+      </TableData>
+      <TableData>
+        <Text
+          size='.9rem'
+          weight='bold'
+          color={theme.colors.blue}
+          underline={true}
+        >
+          {name}
+        </Text>
+      </TableData>
+      <TableData>
+        <Text
+          size='.9rem'
+          weight='bold'
+          color={theme.colors.blue}
+          underline={true}
+        >
+          {color}
+        </Text>
+      </TableData>
+      <TableData>
+        <Row gap='.5rem'>
+          <Icon
+            className={`fa-solid ${quantity > 0 ? 'fa-face-smile': 'fa-face-meh'}`}
+            color={quantity > 0 ? theme.colors.green : 'red'}
+          ></Icon>
+          <Text size='.9rem' weight='bold' color={quantity > 0 ? theme.colors.green : 'red'}>
+            {item.quantity > 0 ? 'In Stock' : 'Out of Stock'}
           </Text>
-        </TableData>
-        <TableData>
-          <Text
-            size='.9rem'
-            weight='bold'
-            color={theme.colors.blue}
-            underline={true}
-          >
-            {color}
-          </Text>
-        </TableData>
-        <TableData>
-          <Row gap='.5rem'>
-            <Icon
-              className={`fa-solid ${
-                quantity > 0 ? 'fa-face-smile ' : 'fa-face-meh'
-              }`}
-              color={quantity > 0 ? theme.colors.green : 'red'}
-            ></Icon>
-            <Text
-              size='.9rem'
+        </Row>
+      </TableData>
+      <TableData>
+        <Text size='.9rem' weight='bold' color={theme.colors.grey}>
+          ${price}
+        </Text>
+      </TableData>
+      <TableData>
+        <Row justify='end' gap='.5rem'>
+          <Row gap='.3rem' align='start'>
+            <Text size='.7rem' weight='bold' color={theme.colors.grey}>qty:</Text>
+            <Text size='.8rem' weight='bold' color={theme.colors.grey}>{quantity}</Text>
+            <Input
+              border='0'
+              bg={theme.colors.accent}
+              shadow={`inset .1rem .1rem ${theme.colors.shadow}`}
+              padding='0 1rem'
+              height='2rem'
               weight='bold'
-              color={quantity > 0 ? theme.colors.green : 'red'}
+              type='number'
+              value={userQuantity}
+              onChange={(e) => {
+                // if entered quantity is valid only then update
+                if ((e.target.value <= quantity && e.target.value > 0) || !e.target.value) {
+                  setUserQuantity(e.target.value)
+                }
+              }}
+              width='3.5rem'
+              disabled={quantity > 0 ? false : true}
+              color={quantity === 0 && theme.colors.grey}
+            />
+            <Container
+              height='2rem'
+              padding='0 1.3rem'
+              bg='#333333'
+              center={true}
             >
-              {quantity > 0 ? 'In Stock' : 'Out of Stock'}
-            </Text>
+              <Icon
+                className='fa-solid fa-shopping-cart'
+                size='.8rem'
+                color='white'
+              ></Icon>
+            </Container>
           </Row>
-        </TableData>
-        <TableData>
-          <Text size='.9rem' weight='bold' color={theme.colors.grey}>
-            ${price}
-          </Text>
-        </TableData>
-        <TableData>
-          <Row justify='end' gap='.5rem'>
-            <Row gap='.3rem'>
-              <Row gap='1rem' align='start'>
-                <Container>
-                  <Text weight='bold' size='.7rem'>
-                    qty. {quantity}
-                  </Text>
-                </Container>
-                <Input
-                  size='1'
-                  border='0'
-                  bg={theme.colors.accent}
-                  shadow={`inset .1rem .1rem ${theme.colors.shadow}`}
-                  padding='0 1rem'
-                  height='2rem'
-                  weight='bold'
-                  defaultValue={quantity > 0 ? '1' : '-'}
-                  disabled={quantity > 0 ? false : true}
-                  max={quantity}
-                />
-              </Row>
-              <Container
-                height='2rem'
-                padding='0 1.3rem'
-                bg='#333333'
-                center={true}
-              >
-                <Icon
-                  className='fa-solid fa-shopping-cart'
-                  size='.8rem'
-                  color='white'
-                ></Icon>
-              </Container>
-            </Row>
-            <Input type='checkbox' disabled={quantity > 0 ? false : true} onChange={(e) => {
-              // getting the status
-              const isChecked = e.target.checked
-
-              // if checked then add the item to the cart
-              if (isChecked) {
-                addItemToCart(item)
-              } else {
-                // otherwise remove from cart
-                removeFromCart(item.id)
-              }
-            }} />
-          </Row>
-        </TableData>
-      </TableRow>
-    );
-  });
+          <Input
+            type='checkbox'
+            onChange={(e) => {
+              // setting the state
+              setIsChecked(e.target.checked)
+            }}
+            disabled={quantity > 0 ? false : true}
+          />
+        </Row>
+      </TableData>
+    </TableRow>
+  );
 }

@@ -13,6 +13,7 @@ const Input = styled.input`
   font-weight: ${props => props.weight};
   font-family: ${props => props.theme.fontFamily};
   height: ${props => props.height};
+  width: ${props => props.width}
 `
 
 export default Input

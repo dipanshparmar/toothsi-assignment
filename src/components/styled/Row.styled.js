@@ -7,6 +7,7 @@ const Row = styled.div`
   column-gap: ${(props) => props.gap};
   padding: ${(props) => props.padding};
   cursor: ${props => props.cursor};
+  width: ${props => props.width};
 `;
 
 export default Row;
