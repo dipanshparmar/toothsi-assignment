@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Cart from './Pages/Cart';
+import Cart from './pages/Cart';
 import { ThemeProvider } from 'styled-components';
 import theme from './theme';
 import GlobalStyles from './GlobalStyles.styled';
-import Thanks from './Pages/Thanks';
+import Thanks from './pages/Thanks';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -20,6 +20,7 @@ root.render(
           <Route path='/' element={<App />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/thanks' element={<Thanks />} />
+
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
