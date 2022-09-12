@@ -15,7 +15,7 @@ root.render(
     <ThemeProvider theme={theme}>
       <GlobalStyles />
 
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
           <Route path='/' element={<App />} />
           <Route path='/cart' element={<Cart />} />
