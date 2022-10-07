@@ -6,20 +6,28 @@ let store = (set) => {
     cartItems: [],
     total: 0,
 
+    // function to clear the cart
+    clearCart: () => {
+      set((state) => ({
+        total: 0,
+        cartItems: [],
+      }));
+    },
+
     // function to add the item to the cart
     addItemToCart: (cartItem) => {
       set((state) => {
         // if cartItem already in cartItems then return the previous state
-        const alreadyIn = state.cartItems.filter(item => {
-          return item.item.id === cartItem.item.id
-        })
+        const alreadyIn = state.cartItems.filter((item) => {
+          return item.item.id === cartItem.item.id;
+        });
 
         if (alreadyIn.length > 0) {
-          console.log('not added')
-          return state
+          console.log('not added');
+          return state;
         }
 
-        console.log('added')
+        console.log('added');
         return {
           cartItems: [...state.cartItems, cartItem],
           total: state.total + cartItem.item.price * cartItem.quantity,

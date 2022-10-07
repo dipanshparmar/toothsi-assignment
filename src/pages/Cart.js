@@ -128,7 +128,7 @@ export default function Cart() {
                     center={true}
                     radius='3rem'
                   >
-                    <Text weight='bold' size='.85rem' color='white' align='center' whiteSpace='nowrap'>
+                    <Text weight='bold' size='.85rem' color='white' align='center' whiteSpace='nowrap' >
                       PROCEED TO CHECKOUT
                     </Text>
                   </Container>

@@ -4,8 +4,17 @@ import Container from '../components/styled/Container.styled';
 import Text from '../components/styled/Text.styled';
 import theme from '../theme';
 import useCartStore from '../stores/cartStore';
+import { useEffect } from 'react';
 
 export default function Thanks() {
+  // getting the clear cart action
+  const clearCart = useCartStore(state => state.clearCart)
+
+  // clearing the cart
+  useEffect(() => {
+    clearCart()
+  }, [])
+
   const cartItems = useCartStore(state => state.cartItems)
   console.log(cartItems)
   return (
