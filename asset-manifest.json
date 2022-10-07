@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/toothsi-assignment/static/js/main.5819195a.js",
+    "main.js": "/toothsi-assignment/static/js/main.e9ac20de.js",
     "static/js/787.9cfefafc.chunk.js": "/toothsi-assignment/static/js/787.9cfefafc.chunk.js",
     "index.html": "/toothsi-assignment/index.html",
-    "main.5819195a.js.map": "/toothsi-assignment/static/js/main.5819195a.js.map",
+    "main.e9ac20de.js.map": "/toothsi-assignment/static/js/main.e9ac20de.js.map",
     "787.9cfefafc.chunk.js.map": "/toothsi-assignment/static/js/787.9cfefafc.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.5819195a.js"
+    "static/js/main.e9ac20de.js"
   ]
 }
