@@ -221,12 +221,21 @@ function DataRow({ item }) {
               value={userQuantity}
               smSize='.8rem'
               onChange={(e) => {
-                // if entered quantity is valid only then update
-                if (
-                  (e.target.value <= quantity && e.target.value > 0) ||
-                  !e.target.value
-                ) {
-                  setUserQuantity(e.target.value);
+                // getting the target value
+                const targetValue = e.target.value
+
+                // if target value is not empty
+                if (targetValue) {
+                  // getting the integer
+                  const targetValueInt = parseInt(targetValue)
+
+                  // if target value is is the range then set it
+                  if (targetValueInt <= quantity && targetValueInt > 0) {
+                    setUserQuantity(targetValueInt)
+                  }
+                } else {
+                  // if target value is empty then set the quantity as empty, on the cart page it will interpreted as 1
+                  setUserQuantity('')
                 }
               }}
               width='3.5rem'
