@@ -119,12 +119,18 @@ function DataRow({ item }) {
   const addItemToCart = useCartStore((state) => state.addItemToCart);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
   const updateQuantity = useCartStore((state) => state.updateQuantity);
+  const cartItems = useCartStore(state => state.cartItems)
+
+  // deciding if current item is already in cart
+  const isInCart = cartItems.filter(cartItem => {
+    return cartItem.item.id === id
+  })
 
   // state for quantity
-  const [userQuantity, setUserQuantity] = useState(quantity > 0 ? 1 : 0);
+  const [userQuantity, setUserQuantity] = useState(isInCart.length > 0 ? isInCart[0].quantity : quantity > 0 ? 1 : 0); // TODO
 
   // state for checkbox
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(isInCart.length > 0 ? true: false);
 
   // to update when there is a change in checkbox
   useEffect(() => {
@@ -147,6 +153,7 @@ function DataRow({ item }) {
 
     // if the checkbox is checked
     if (isChecked) {
+      console.log('changed quantity to', userQuantity === '' ? 1 : userQuantity)
       // update quantity
       updateQuantity(cartItem, userQuantity === '' ? 1 : userQuantity);
     }
@@ -258,6 +265,7 @@ function DataRow({ item }) {
           <Input
             type='checkbox'
             smSize='.8rem'
+            checked={isChecked}
             onChange={(e) => {
               // setting the state
               setIsChecked(e.target.checked);

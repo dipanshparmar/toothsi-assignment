@@ -1,11 +1,9 @@
-import Header from './components/Header';
-import ItemsTable from './components/ItemsTable';
+import ItemsPage from './pages/ItemsPage';
 
 function App() {
   return (
     <div className='app'>
-      <Header />
-      <ItemsTable />
+      <ItemsPage />
     </div>
   );
 }

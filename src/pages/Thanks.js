@@ -3,8 +3,11 @@ import Column from '../components/styled/Column.styled';
 import Container from '../components/styled/Container.styled';
 import Text from '../components/styled/Text.styled';
 import theme from '../theme';
+import useCartStore from '../stores/cartStore';
 
 export default function Thanks() {
+  const cartItems = useCartStore(state => state.cartItems)
+  console.log(cartItems)
   return (
     <Container height='100vh' width='100%' center={true} bg={theme.colors.border} padding='0 2rem'>
       <Column gap='1rem'>

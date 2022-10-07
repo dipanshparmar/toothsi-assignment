@@ -20,6 +20,7 @@ import { useEffect } from 'react';
 export default function Cart() {
   // getting the items
   const cartItems = useCartStore((state) => state.cartItems);
+  console.log(cartItems)
 
   // getting the total
   const total = useCartStore((state) => state.total);

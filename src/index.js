@@ -8,6 +8,7 @@ import { ThemeProvider } from 'styled-components';
 import theme from './theme';
 import GlobalStyles from './GlobalStyles.styled';
 import Thanks from './pages/Thanks';
+import ItemsPage from './pages/ItemsPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
